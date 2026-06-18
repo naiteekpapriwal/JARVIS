@@ -2,7 +2,7 @@
 
 ![Jarvis](https://img.shields.io/badge/Status-Active-brightgreen)
 ![Platform](https://img.shields.io/badge/Platform-macOS-lightgrey)
-![LLM](https://img.shields.io/badge/LLM-Ollama-blue)
+![LLM](https://img.shields.io/badge/LLM-Gemini-blue)
 
 JARVIS is a truly local, privacy-first AI assistant deeply woven into the macOS ecosystem. Unlike generic cloud-based chatbots, Jarvis has native access to your operating system, acting as an autonomous extension of your machine with local memory and full system context.
 
@@ -32,7 +32,7 @@ Jarvis can execute bash commands and control your system directly from the termi
 
 ## 🛠️ Architecture & Tech Stack
 
-* **Core AI:** [Ollama](https://ollama.com/) (Local LLMs)
+* **Core AI:** [Google Gemini](https://deepmind.google/technologies/gemini/)
 * **Memory:** [Mem0](https://github.com/mem0ai/mem0) (Local Vector DB via Chroma)
 * **Backend:** FastAPI (Python)
 * **Frontend:** React + Vite
@@ -44,7 +44,6 @@ Jarvis can execute bash commands and control your system directly from the termi
 
 ### Prerequisites
 * macOS (Required for Spotlight, iMessage, and Apple Calendar integrations)
-* [Ollama](https://ollama.com/) installed and running locally
 * Python 3.10+
 * Node.js & npm
 
