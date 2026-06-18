@@ -13,7 +13,6 @@ from rich.panel import Panel
 from rich.text import Text
 
 import jarvis_core as core
-import tts
 
 def record_audio_until_enter():
     import sounddevice as sd
@@ -89,16 +88,11 @@ def main():
         "[dim]to end the session.[/dim]\n"
     )
 
-    # Track whether TTS is enabled (loaded from config)
-    tts_enabled = core.CONFIG.get("tts", {}).get("enabled", True)
-    tts_voice = core.CONFIG.get("tts", {}).get("voice", "Daniel")
-    tts_rate = core.CONFIG.get("tts", {}).get("rate", 190)
+    # TTS has been removed
 
     while True:
         # ── Get user input ──────────────────────────────────────────
         try:
-            # Stop any ongoing speech when user starts typing
-            tts.stop()
             user_input = prompt("You ➜  ", history=history).strip()
         except (EOFError, KeyboardInterrupt):
             core.console.print("\n  👋 Session ended. Goodbye!\n", style="bold")
@@ -136,14 +130,11 @@ def main():
 
         # ── Special command: mute/unmute ─────────────────────────────
         if user_input.lower() == "/mute":
-            tts_enabled = False
-            tts.stop()
-            core.console.print("  🔇 [dim]Voice muted.[/dim]")
+            core.console.print("  🔇 [dim]Voice features are disabled.[/dim]")
             continue
 
         if user_input.lower() == "/unmute":
-            tts_enabled = True
-            core.console.print("  🔊 [dim]Voice unmuted.[/dim]")
+            core.console.print("  🔊 [dim]Voice features are disabled.[/dim]")
             continue
 
         # ── Special command: voice ───────────────────────────────────
@@ -181,9 +172,7 @@ def main():
             )
             core.console.print()
 
-            # Speak the reply aloud
-            if tts_enabled and reply:
-                tts.speak(reply, voice=tts_voice, rate=tts_rate)
+            # TTS features removed
 
             # Save to memory in the background
             core.save_to_memory(user_input, reply)

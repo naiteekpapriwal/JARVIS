@@ -241,50 +241,7 @@ async def get_memory():
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-import tts as tts_module
-from fastapi.responses import FileResponse
-import tempfile
 
-class TTSRequest(BaseModel):
-    text: str
-
-@app.post("/tts")
-async def text_to_speech(req: TTSRequest):
-    """Render Daniel voice to a WAV file and return it for browser playback."""
-    try:
-        cleaned = tts_module._clean_text_for_speech(req.text)
-        if not cleaned:
-            return {"status": "error", "message": "No speakable text"}
-
-        voice = core.CONFIG.get("tts", {}).get("voice", "Daniel")
-        rate = core.CONFIG.get("tts", {}).get("rate", 190)
-
-        # Render speech to AIFF first (macOS say outputs AIFF)
-        aiff_path = "/tmp/jarvis_tts_output.aiff"
-        wav_path = "/tmp/jarvis_tts_output.wav"
-
-        # Generate speech to file
-        import subprocess
-        result = subprocess.run(
-            ["say", "-v", voice, "-r", str(rate), "-o", aiff_path, cleaned],
-            capture_output=True, timeout=30
-        )
-        if result.returncode != 0:
-            return {"status": "error", "message": "say command failed"}
-
-        # Convert AIFF → WAV for browser compatibility
-        subprocess.run(
-            ["afconvert", "-f", "WAVE", "-d", "LEI16@22050", aiff_path, wav_path],
-            capture_output=True, timeout=10
-        )
-
-        return FileResponse(
-            wav_path,
-            media_type="audio/wav",
-            filename="jarvis_speech.wav"
-        )
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
 
 if __name__ == "__main__":
     import uvicorn
