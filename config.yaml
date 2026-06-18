@@ -1,0 +1,42 @@
+llm:
+  provider: "gemini"
+  api_key: "YOUR_GEMINI_API_KEY_HERE"
+  cloud_model: "gemini-2.5-flash"
+
+ollama:
+  base_url: "http://localhost:11434"
+  api_base: "http://localhost:11434/v1"
+  model: "gemma"
+  embedding_model: "nomic-embed-text"
+
+memory:
+  db_path: "./memory_db"
+  collection: "jarvis_memory"
+  user_id: "naiteek"
+
+rag:
+  data_dir: "./data"
+  cache_dir: "./index_cache"
+  top_k: 3
+
+execution:
+  auto_run: false           # SAFETY: require confirmation before running commands
+  allowed_commands: []      # Empty = allow all (with confirmation)
+  blocked_commands:         # Never allow these, even with confirmation
+    - "rm -rf /"
+    - "mkfs"
+    - "dd if="
+  timeout_seconds: 30
+
+logging:
+  enabled: true
+  dir: "./logs"
+
+tts:
+  enabled: true
+  voice: "Daniel"              # macOS voice — try 'say -v ?' to see all options
+  rate: 190                    # Words per minute (default macOS is ~175)
+
+discord:
+  bot_token: "YOUR_DISCORD_BOT_TOKEN_HERE"
+  allowed_user_ids: [753492260468817943] # Add your Discord User ID here (e.g. [123456789012345678])

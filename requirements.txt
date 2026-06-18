@@ -1,0 +1,45 @@
+# ─────────────────────────────────────────────────────────────────────
+# Jarvis — Local AI Agent Dependencies
+# ─────────────────────────────────────────────────────────────────────
+# Install:  pip install -r requirements.txt
+# ─────────────────────────────────────────────────────────────────────
+
+# Core LLM client
+openai>=1.30.0
+
+# Long-term memory (Mem0)
+mem0ai>=0.1.0
+
+# Local file RAG (LlamaIndex + Ollama adapters)
+llama-index>=0.11.0
+llama-index-llms-ollama
+llama-index-embeddings-ollama
+
+# Terminal UI
+rich>=13.0
+prompt-toolkit>=3.0
+
+# Config
+pyyaml>=6.0
+
+# Web Search
+ddgs>=9.14.0
+
+# Discord Bot
+discord.py>=2.3.0
+
+# Voice Input
+openai-whisper>=20231117
+
+# Web Application Backend
+fastapi>=0.100.0
+uvicorn>=0.23.0
+pydantic>=2.0.0
+
+# Hardware Metrics
+psutil>=5.9.0
+
+# GUI Automation & OCR
+pyautogui>=0.9.54
+pytesseract>=0.3.10
+Pillow>=10.0.0

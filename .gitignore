@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+.jarvis/
+data/
+index_cache/
+memory_db/
+logs/
+.DS_Store
+.env
+frontend/node_modules/
+frontend/dist/
+frontend/.DS_Store
+*.pyc
+*.pyo
